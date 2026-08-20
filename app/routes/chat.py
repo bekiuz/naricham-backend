@@ -48,7 +48,12 @@ async def chat(
             },
         ) from exc
     except ManusApiError as exc:
+        detail = (
+            exc.diagnostic_detail()
+            if manus.diagnostics_enabled
+            else exc.public_detail()
+        )
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=exc.public_detail(),
+            detail=detail,
         ) from exc

@@ -40,6 +40,10 @@ class Settings(BaseSettings):
         le=5,
         validation_alias="MANUS_POLL_INTERVAL_SECONDS",
     )
+    manus_diagnostics_enabled: bool = Field(
+        default=False,
+        validation_alias="MANUS_DIAGNOSTICS_ENABLED",
+    )
     cors_origins_raw: str = Field(
         default="http://localhost:3000,http://localhost:5173",
         validation_alias="CORS_ORIGINS",

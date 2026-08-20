@@ -42,6 +42,7 @@ Copy `.env.example` to `.env` for local development, or provide the value throug
 | `MANUS_API_TIMEOUT_SECONDS` | No | Per-request HTTP timeout from 0 to 300 seconds; defaults to 30. |
 | `MANUS_RESPONSE_TIMEOUT_SECONDS` | No | Maximum time to poll for the assistant reply from 0 to 300 seconds; defaults to 60. |
 | `MANUS_POLL_INTERVAL_SECONDS` | No | Task event polling interval from 0 to 5 seconds; defaults to 0.75. |
+| `MANUS_DIAGNOSTICS_ENABLED` | No | Defaults to `false`. When `true`, emits safe Manus endpoint diagnostics without API keys, headers, payloads, or actual task IDs. |
 | `CORS_ORIGINS` | No | Comma-separated React origins; defaults to `http://localhost:3000,http://localhost:5173`. |
 
 `MANUS_TASK_ID` is not used as an automatic chat default. To continue a task, the client must explicitly supply a known valid `task_id` in the request body. When no `task_id` is supplied, the backend always creates a new task.
