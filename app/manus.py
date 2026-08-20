@@ -69,16 +69,21 @@ class ManusClient:
         if self._owns_client:
             await self._client.aclose()
 
-    async def send_chat(self, message: str) -> ChatResponse:
-        """Send a message using task.sendMessage or create a new task."""
+    async def send_chat(
+        self,
+        message: str,
+        *,
+        task_id: str | None = None,
+    ) -> ChatResponse:
+        """Create a task by default; continue only an explicitly supplied task ID."""
         api_key = self._settings.manus_api_key
         if api_key is None:
             raise ManusConfigurationError("MANUS_API_KEY is not configured")
 
-        if self._settings.manus_task_id:
+        if task_id:
             endpoint = "/v2/task.sendMessage"
             payload: dict[str, Any] = {
-                "task_id": self._settings.manus_task_id,
+                "task_id": task_id,
                 "message": {
                     "content": [
                         {

@@ -9,6 +9,12 @@ class ChatRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     message: str = Field(min_length=1, max_length=50_000)
+    task_id: str | None = Field(
+        default=None,
+        min_length=1,
+        max_length=200,
+        description="Explicit Manus task continuation ID. Omit to create a new chat task.",
+    )
 
 
 class ManusErrorPayload(BaseModel):

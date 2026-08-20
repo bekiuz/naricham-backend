@@ -22,7 +22,7 @@ async def chat(
     manus: ManusClient = Depends(get_manus_client),
 ) -> ChatResponse:
     try:
-        return await manus.send_chat(payload.message)
+        return await manus.send_chat(payload.message, task_id=payload.task_id)
     except ManusConfigurationError as exc:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
